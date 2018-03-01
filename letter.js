@@ -1,7 +1,4 @@
 
-// `letter.js` should control whether or not a letter appears as a "_" or as itself on-screen.
-//pass in latter into function
-
 
 var letter = function(letter){
 	this.charac = letter;
@@ -11,5 +8,4 @@ var letter = function(letter){
 	};
 };
 
-//export the constructor
 module.exports = letter;

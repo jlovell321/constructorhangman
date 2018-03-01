@@ -12,20 +12,19 @@
 // isGuessed methos that returns guessed
 // if (secret word.isGuessed) {
 // 	gameover}
- 
 
 
 
 var letter = require('./letter.js');
 
-function Word(city) {
-	this.city = city;
+function Word(ocean) {
+	this.ocean = ocean;
 	this.character = [];
 	this.found = false;
 
 	this.getLetter = function() {
-		for (var i=0; i < this.city.length; i++) {
-			this.character.push( new letter(this.city[i]));
+		for (var i=0; i < this.ocean.length; i++) {
+			this.character.push( new letter(this.ocean[i]));
 		}
 	};
 
@@ -36,11 +35,11 @@ function Word(city) {
 		return this.found;
 	};
 
-	this.checkLetter = function(guessCity) {
+	this.checkLetter = function(guessWord) {
 		var toReturn = 0;
 
 		for (var i = 0; i < this.character.length; i++) {
-			if (this.character[i].charac == guessCity){
+			if (this.character[i].charac == guessWord){
 				this.character[i].appear = true;
 				toReturn++;
 			}

@@ -1,46 +1,40 @@
-//`main.js` will contain the logic of your app. Running it in Terminal/Bash will start the game.
 var Word = require('./word.js');
 var prompt = require('prompt');
 
 //start the game
 
-console.log("Welcome to City Hangman");
-console.log("Guess a letter of the name of a city.");
+console.log("Guess the word that is Ocean Themed");
+console.log("Guess a letter of the word.");
 console.log("-----------------------------");
 prompt.start();
 
-// beginning of the game with word bank of the cities
+// word bank
 
 game = {
- 	wordBank: ['Atlanta', 'Dallas', 'Austin', 'New York City', 'Los Angeles', 'Charleston', 'Seattle'],
+ 	wordBank: ['whale','ocean','beach', 'squid','starfish','tide','shark'],
  	wordsWon: 0,
- 	guessesRemaining: 15,
+ 	guessesRemaining: 10,
  	currentWrd: null,
 
- 	// create a function with the this to start the game and grab the word from theword bank
- 	
+ 	// start game
  	startGame: function (wrd) {
  		this.resetGuesses();
  		this.currentWrd = new Word(this.wordBank[Math.floor(Math.random()* this.wordBank.length)]);
  		this.currentWrd.getLetter();
  		this.promptUser();
  	},
-
-
  	resetGuesses: function(){
  		this.guessesRemaining = 10;
  	},
- 		//function that tells the user if they guessed right or wrong
+ 		//right or wrong function
  	promptUser: function(){
  		var self = this;
- 				prompt.get(['guessCity'], function(err, result){
- 					console.log("You guessed: " + result.guessCity);
- 					var manyGuessed = self.currentWrd.checkLetter(result.guessCity);
-
+ 				prompt.get(['guessWord'], function(err, result){
+ 					console.log("You guessed: " + result.guessWord);
+ 					var manyGuessed = self.currentWrd.checkLetter(result.guessWord);
  				if(manyGuessed ==0) {
  						console.log("WRONG");
  						self.guessesRemaining--;
- 				
  				} else {
  						console.log("CORRECT");
  						if(self.currentWrd.findWord()){
@@ -49,7 +43,7 @@ game = {
  							return;
  					}
  			}
- 				// if they have guesses remaining tell them how many are left
+ 				//remaining guesses
  			console.log("Guesses remaining: " + self.guessesRemaining);
  			console.log("-------------------");
  				if((self.guessesRemaining > 0) && (self.currentWrd.found == false)){
